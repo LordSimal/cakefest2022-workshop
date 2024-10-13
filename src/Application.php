@@ -202,9 +202,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 'action' => 'login',
             ]),
         ]);
+        $service->loadAuthenticator('Authentication.Token', [
+            'queryParam' => 'token',
+            'header' => 'Authorization',
+        ]);
 
         // Load identifiers
         $service->loadIdentifier('Authentication.Password', compact('fields'));
+        $service->loadIdentifier('Authentication.Token');
 
         return $service;
     }
